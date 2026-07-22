@@ -31,3 +31,22 @@ def carregar_csvs(arquivos: list[Path]) -> tuple[ dict[str, pd.DataFrame],dict[P
 
     return dataframes, erros
 
+def relatorio_dataframe(dataframes: dict[str, pd.DataFrame]):
+    for nome, df in dataframes.items():
+        linhas, colunas = df.shape
+        print(f"""
+================================
+Tabela: {nome}
+================================
+
+Linhas: {linhas}
+Colunas: {colunas}
+
+Valores Nulos: 
+{df.isnull().sum()}
+
+Tipos das colunas: 
+{df.dtypes}
+
+
+""")
